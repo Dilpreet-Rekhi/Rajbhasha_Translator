@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>राजभाषा अनुवादक | Official Hindi Translator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+<body class="bg-gray-50">
+    <!-- Government Header -->
+    <!-- Add this navigation right after the header logo section -->
+    <header class="bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center">
+                <img src="images/flag-of-india.png" alt="Indian Emblem" class="h-12 mr-3">
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800">राजभाषा अनुवादक</h1>
+                    <p class="text-sm text-gray-600">Government of India Approved Translation System</p>
+                </div>
+            </div>
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-blue-600 font-medium">Home</a>
+                <a href="services.html" class="text-gray-700 hover:text-blue-600">Services</a>
+                <a href="contact.html" class="text-gray-700 hover:text-blue-600">Contact</a>
+                <a href="login.html" class="bg-blue-600 text-white px-4 py-1 rounded-md hover:bg-blue-700">Login</a>
+            </nav>
+        </div>
+
+    </header>
+
+    <!-- Main Translator Interface -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <!-- Domain Selection -->
+            <div class="bg-blue-50 px-6 py-3 border-b">
+                <div class="flex flex-wrap items-center gap-4">
+                    <label class="font-medium text-gray-700">Select Domain:</label>
+                    <select id="domainSelect" class="px-4 py-2 border rounded-md bg-white">
+                        <option value="common">General Administration</option>
+                        <option value="education">Education</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="legal">Legal</option>
+                    </select>
+                    
+                    <div class="ml-auto flex items-center">
+                        <span class="inline-block w-3 h-3 rounded-full bg-green-500 mr-2"></span>
+                        <span >API Connected</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Translation Area -->
+            <div class="grid md:grid-cols-2 gap-6 p-6">
+                <!-- English Input -->
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="block font-medium text-gray-700">English Text</label>
+                        <span id="charCount" class="text-sm text-gray-500">0/5000</span>
+                    </div>
+                    <textarea id="inputText" class="text-area w-full p-4 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" 
+                              placeholder="Type or paste English content here..." maxlength="5000"></textarea>
+                </div>
+                
+                <!-- Hindi Output -->
+                <div>
+                    <div class="flex justify-between items-center mb-2">
+                        <label class="block font-medium text-gray-700">Hindi Translation</label>
+                        <div class="flex gap-2">
+                            <button id="copyBtn" class="text-sm bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded-md">
+                                Copy
+                            </button>
+                        </div>
+                    </div>
+                    <div id="outputText" class="text-area devanagari w-full p-4 border border-gray-300 rounded-md bg-gray-50 text-lg">
+                        <p class="text-gray-400">Translated Hindi text will appear here...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="bg-gray-50 px-6 py-4 border-t flex flex-wrap gap-3">
+                <button id="translateBtn" class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md shadow flex items-center justify-center">
+                    <svg id="loaderIcon" class="hidden animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Translate to Hindi
+                </button>
+                
+                <button id="clearBtn" class="px-6 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 rounded-md">
+                    Clear All
+                </button>
+                
+                <!-- <button id="saveBtn" class="px-6 py-2 bg-blue-100 hover:bg-blue-200 text-blue-800 rounded-md ml-auto">
+                    Save as PDF
+                </button> -->
+                
+            </div>
+        </div>
+
+        <!-- How to Use Section -->
+        <div class="mt-8 bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-bold mb-4">Official Usage Guidelines</h2>
+            <ul class="list-disc pl-5 space-y-2 text-gray-700">
+                <li>For government official use only</li>
+                <li>Always verify legal/technical terms with Rajbhasha department</li>
+                <li>Maximum 5000 characters per translation</li>
+                <li>API key required for integration</li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- Government Footer -->
+    <footer class="bg-white border-t mt-8">
+        <div class="max-w-7xl mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <img src="images/flag-of-india.png" 
+                         alt="Government Logo" class="h-8 mr-3">
+                    <span class="text-sm text-gray-600">Ministry of Electronics and Information Technology</span>
+                </div>
+                <div class="text-sm text-gray-500">
+                    © 2024 Government of India. All Rights Reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
